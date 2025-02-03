@@ -1,0 +1,24 @@
+{
+  "name": "jogodaforca-backend",
+  "version": "1.0.0",
+  "description": "Jogo da forca para a disciplina de engenharia de software 1 UFCAT",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "keywords": [],
+  "author": "Lorena, Maria Isadora, Aline, Marcus",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2",
+    "sqlite3": "^5.1.6",
+    "swagger-ui-express": "^5.0.0",
+    "swagger-jsdoc": "^6.2.8",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
