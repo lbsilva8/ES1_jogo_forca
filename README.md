@@ -56,8 +56,9 @@ npm run dev
 ---
 
 <a>
+ <sub><b>Aline</b></sub>
+ <sub><b>Ana Clara</b></sub>
  <sub><b>Lorena Borges</b></sub>
- <sub><b>Maria Isadora</b></sub>
  <sub><b>Marcus</b></sub>
- <sub><b>Ana</b></sub>
+ <sub><b>Maria Isadora</b></sub>
  </a>

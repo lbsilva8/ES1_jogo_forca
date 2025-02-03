@@ -9,7 +9,7 @@
     "dev": "nodemon src/index.js"
   },
   "keywords": [],
-  "author": "Lorena, Maria Isadora, Aline, Marcus",
+  "author": "Lorena, Maria Isadora, Aline, Marcus, Ana clara",
   "license": "ISC",
   "dependencies": {
     "express": "^4.21.2",
