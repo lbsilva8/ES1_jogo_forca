@@ -26,10 +26,10 @@ const swaggerOptions = {
   definition: {
     openapi: '3.0.0',
     info: {
-      title: 'Jogo da Velha API',
+      title: 'Jogo da Forca API',
       version: '1.0.0',
       description:
-        'API de um jogo da velha para a disciplina de Engenharia de Software 1 UFCAT',
+        'API de um jogo da Forca para a disciplina de Engenharia de Software 1 UFCAT',
     },
   },
   apis: [join(__dirname, 'routes', 'wordRoutes.js')],

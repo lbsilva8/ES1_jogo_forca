@@ -1,4 +1,4 @@
-<h1 align="center">API Jogo da velha</h1>
+<h1 align="center">API Jogo da Forca</h1>
 
 <p align="center">
  <a href="#descricao">Descrição do projeto</a> •
@@ -12,11 +12,16 @@
 ## Descrição do projeto:
 
 <p> Projeto para a disciplina de Engenharia de Software I do curso de Ciencias da computação da UFCAT. <br>
-Está sendo desenvolvida uma API de um jogo da velha para navegador. </p>
+Está sendo desenvolvida uma API de um jogo da forca para navegador. </p>
 
 ---
 
 ## Como executar:
+
+- Para executar o programa é necessário que o node.js esteja instalado.
+```
+node -v
+```
 
 ### Instalação
 
