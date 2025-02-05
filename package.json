@@ -12,11 +12,12 @@
   "author": "Lorena, Maria Isadora, Aline, Marcus, Ana clara",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.21.2",
+    "jogodaforca-backend": "file:",
     "sqlite3": "^5.1.6",
-    "swagger-ui-express": "^5.0.0",
     "swagger-jsdoc": "^6.2.8",
-    "cors": "^2.8.5"
+    "swagger-ui-express": "^5.0.0"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
