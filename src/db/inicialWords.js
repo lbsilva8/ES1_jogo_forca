@@ -17,6 +17,7 @@ const initialWords = [
   ['tristeza', 'sentimento'],
   ['paris', 'cidade'],
   ['roma', 'cidade'],
+  ['brasil', 'país'],
 ];
 
 db.serialize(() => {
