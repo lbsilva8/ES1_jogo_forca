@@ -1,8 +1,11 @@
-import sqlite3 from 'sqlite3';
+import { dirname, join } from 'path';
+import { fileURLToPath } from 'url';
 
-const db = new sqlite3.Database('banco_palavras.db');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const dbPath = join(__dirname, '../../banco_palavras.db');
 
-const initialWords = [
+export const initialWords = [
   ['morango', 'fruta'],
   ['banana', 'fruta'],
   ['cachorro', 'animal'],
@@ -17,27 +20,4 @@ const initialWords = [
   ['tristeza', 'sentimento'],
   ['paris', 'cidade'],
   ['roma', 'cidade'],
-  ['brasil', 'país'],
 ];
-
-db.serialize(() => {
-  // Cria a tabela
-  db.run(`CREATE TABLE IF NOT EXISTS palavras (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    palavra TEXT NOT NULL,
-    categoria TEXT NOT NULL
-  )`);
-
-  // Insere as palavras iniciais
-  const stmt = db.prepare(
-    'INSERT INTO palavras (palavra, categoria) VALUES (?, ?)',
-  );
-
-  initialWords.forEach(([palavra, categoria]) => {
-    stmt.run(palavra, categoria);
-  });
-
-  stmt.finalize();
-});
-
-db.close();
