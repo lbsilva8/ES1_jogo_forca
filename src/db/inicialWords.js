@@ -181,5 +181,16 @@ export const initialWords = [
   ['vilnius', 'cidade'],
   ['riga', 'cidade'],
   ['tallinn', 'cidade'],
-
+  ['alface', 'verdura'],
+  ['acelga', 'verdura'],
+  ['agrião', 'verdura'],
+  ['couve', 'verdura'],
+  ['repolho', 'verdura'],
+  ['brócolis', 'verdura'],
+  ['almeirão', 'verdura'],
+  ['espinafre', 'verdura'],
+  ['rúcula', 'verdura'],
+  ['chicória', 'verdura'],
+  ['mostarda', 'verdura'],
+  ['escarola', 'verdura'],
 ];
