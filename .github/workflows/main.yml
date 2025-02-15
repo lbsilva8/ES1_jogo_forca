@@ -1,0 +1,21 @@
+name: Verificar Conflitos com a Main
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  check-for-conflicts:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v3
+        
+      - name: Verificar se há conflitos com a main
+        run: |
+          git fetch origin main
+          git checkout main
+          git pull origin main
+          git merge --no-ff ${{ github.head_ref }} || echo "Conflitos encontrados - atualizar a main"
