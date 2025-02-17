@@ -1,37 +1,95 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jogo</title>
-    <link rel="stylesheet" type="text/css" href="styles.css" media="screen" />
-    <script src="scripts.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jogo</title>
+  <link rel="stylesheet" type="text/css" href="style_p2.css" media="screen" />
+  <script defer src="scripts.js"></script>
 </head>
 <body>
-    <header class="header">
-        <h1 class="forca">Enforcado</h1>
-        <button class="info">?</button>
-    </header>
-    <main class="principal2">
-        <div class="palavra-escolhida" id="palavraEscolhida"></div>
-        <h2 class="categoria">Categoria</h2>
-        <div class="keyboard">
-            <div class="row">
-                <div class="key">Q</div><div class="key">W</div><div class="key">E</div><div class="key">R</div>
-                <div class="key">T</div><div class="key">Y</div><div class="key">U</div><div class="key">I</div>
-                <div class="key">O</div><div class="key">P</div>
-            </div>
-            <div class="row">
-                <div class="key">A</div><div class="key">S</div><div class="key">D</div><div class="key">F</div>
-                <div class="key">G</div><div class="key">H</div><div class="key">J</div><div class="key">K</div>
-                <div class="key">L</div><div class="key">Ç</div>
-            </div>
-            <div class="row">
-                <div class="key">Z</div><div class="key">X</div><div class="key">C</div><div class="key">V</div>
-                <div class="key">B</div><div class="key">N</div><div class="key">M</div>
-            </div>
+  <header class="header">
+    <h1 class="forca">Enforcado</h1>
+    <button class="info">?</button>
+  </header>
+  <main class="principal2">
+    <div class="container">
+      <div class="game-area">
+        <img src="img/nova-forca.png" alt="Forca" class="forca">
+        <img src="img/corvo-hd.png" alt="Corvo" class="corvo" id="corvo">
+        <img src="img/cabeça-viva.png" alt="Cabeça" class="boneco" id="cabeca">
+        <img src="img/torso.png" alt="Corpo" class="boneco" id="corpo">
+        <img src="img/esquerdo.png" alt="Braço Esquerdo" class="boneco" id="bracoE">
+        <img src="img/direito.png" alt="Braço Direito" class="boneco" id="bracoD">
+        <img src="img/perna-esquerda.png" alt="Perna Esquerda" class="boneco" id="pernaE">
+        <img src="img/perna-direita.png" alt="Perna Direita" class="boneco" id="pernaD">
+      </div>
+    </div>
+
+    <div class="palavra-escolhida" id="palavraEscolhida"></div>
+    <h2 class="categoria">Categoria</h2>
+    <div class="keyboard" id="keyboard">
+        <div class="row">
+            <div class="key">Q</div><div class="key">W</div><div class="key">E</div><div class="key">R</div>
+            <div class="key">T</div><div class="key">Y</div><div class="key">U</div><div class="key">I</div>
+            <div class="key">O</div><div class="key">P</div><div class="key">A</div><div class="key">S</div>
+            <div class="key">D</div><div class="key">F</div>
         </div>
-    </main>
-    <script src="scripts.js"></script>
+        <div class="row">
+            <div class="key">G</div><div class="key">H</div><div class="key">J</div><div class="key">K</div>
+            <div class="key">L</div><div class="key">Ç</div><div class="key">Z</div><div class="key">X</div>
+            <div class="key">C</div><div class="key">V</div><div class="key">B</div><div class="key">N</div>
+            <div class="key">M</div>
+        </div>
+    </div>    
+  </main>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let palavra = ['T', 'E', 'S', 'T', 'E']; 
+        let erros = 0;
+        const maxErros = 6;
+        const partesBoneco = ['cabeca', 'corpo', 'bracoE', 'bracoD', 'pernaE', 'pernaD'];
+        const palavraEscolhida = document.getElementById('palavraEscolhida');
+        const keyboard = document.getElementById('keyboard');
+
+        function generateWordSpaces() {
+            palavraEscolhida.innerHTML = '';
+            palavra.forEach(() => {
+                const span = document.createElement('span');
+                span.className = 'letter';
+                span.textContent = '_';
+                palavraEscolhida.appendChild(span);
+            });
+        }
+        
+        function verificarLetra(letra) {
+            let acertou = false;
+            document.querySelectorAll('.letter').forEach((span, index) => {
+                if (palavra[index] === letra) {
+                    span.textContent = letra;
+                    acertou = true;
+                }
+            });
+
+            if (!acertou) {
+                if (erros < maxErros) {
+                    document.getElementById(partesBoneco[erros]).style.display = 'block';
+                    erros++;
+                }
+            }
+        }
+
+        keyboard.addEventListener('click', function (event) {
+            if (event.target.classList.contains('key')) {
+                verificarLetra(event.target.textContent);
+            }
+        });
+
+        generateWordSpaces();
+    });
+  </script>
 </body>
 </html>
+
+
+
