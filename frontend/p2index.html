@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Jogo</title>
   <link rel="stylesheet" type="text/css" href="style_p2.css" media="screen" />
+  <link rel="stylesheet" href="style2.css">
   <script defer src="scripts.js"></script>
 </head>
 <body>
@@ -12,7 +13,65 @@
     <h1 class="forca">Enforcado</h1>
     <button class="info">?</button>
   </header>
+
+
   <main class="principal2">
+
+    <dialog id="infoModal">
+
+      <div class="popup-box">
+
+         <!-- Página 1: Introdução -->
+    <div class="popup-page" id="pagina1">
+      <h1>O jogo</h1>
+      <p>O objetivo do Jogo da Forca é adivinhar uma palavra secreta antes que o número máximo de tentativas seja atingido.</p>
+      <ul>
+          <li>O jogo é dividido por categoria: Fácil, Médio, Difícil.</li>
+      </ul>
+      <button onclick="mudarPagina(2)">→</button>
+    </div>
+
+       <!-- Página 2: Como Jogar -->
+       <div class="popup-page" id="pagina2">
+        <h1>Como jogar</h1>
+        <ul>
+            <li>A palavra oculta está relacionada com "Dica da palavra".</li>
+            <li>O tamanho da palavra oculta está representado pelos traços.</li>
+            <li>Clique em uma das letras. Se a letra existir na palavra, a letra será exibida.</li>
+        </ul>
+        <img src="imgButton/TecladoForca.jpeg" alt="Imagem do teclado" class="popup-img">
+
+        <button onclick="mudarPagina(1)">←</button>
+        <button onclick="mudarPagina(3)">→</button>
+    </div>
+
+      <!-- Página 3: Boneco Forca -->
+      <div class="popup-page" id="pagina3">
+        <h1>Tentativas de jogadas</h1>
+        <ul>
+            <li>O jogador tem 6 tentativas de jogadas.</li>
+            
+            <li>A cada erro, uma parte do boneco é desenhada: cabeça, tronco, braço direito, braço esquerdo, perna direita e perna esquerda.</li>
+        </ul>
+       <img src="imgButton/BonecoForca.jpeg" alt="Imagen Boneco"class=popup-img>
+
+        <button onclick="mudarPagina(2)">←</button>
+        <button onclick="mudarPagina(4)">→</button>
+    </div>
+
+    <!-- Página 4: Dicas -->
+    <div class="popup-page" id="pagina4">
+      <h1>Dicas</h1>
+      <ul>
+          <li>Comece pelas vogais: a, e, i, o, u.</li>
+      </ul>
+      <button onclick="mudarPagina(3)">←</button>
+  </div>
+
+    <button id="closeModal">Fechar</button>
+</div>
+  </dialog>
+  
     <div class="container">
       <div class="game-area">
         <img src="img/nova-forca.png" alt="Forca" class="forca">
@@ -41,7 +100,10 @@
             <div class="key">C</div><div class="key">V</div><div class="key">B</div><div class="key">N</div>
             <div class="key">M</div>
         </div>
-    </div>    
+    </div>
+
+   
+   
   </main>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
