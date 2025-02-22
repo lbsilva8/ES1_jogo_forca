@@ -1,8 +1,12 @@
 :root {
-  --color-bot-after: #5a5353c4;
-  --color-bot-jogar: #474343;
-  --color-body: #8a8c91;
-  --color-conteudo: #e6eaf167;
+  --bg-bot-after: #5a5353c4;
+  --bg-bot-jogar: #d1661e;
+  --bg-body: #cf8a5c;
+  --bg-container: #e6eaf167;
+  --color-border-container: 0.5px solid rgba(255, 255, 255, 0.582);
+  --color-shadow-container: 0 8px 32px rgba(0, 0, 0, 0.2);
+  --color-border-button: 0.5px solid black;
+  --color-shadow-button: 3px 3px #141414;
 }
 
 * {
@@ -15,13 +19,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  
-  position: fixed;  
-  top: 20px;           
-  right: 5px;          
-  width: 100%;      
+
+  position: fixed;
+  top: 20px;
+  right: 5px;
+  width: 100%;
   padding: 10px 20px;
-  z-index: 1000;    
+  z-index: 1000;
 }
 
 .forca {
@@ -32,13 +36,13 @@
 
 .info {
   position: absolute;
-  right: 20px; 
+  right: 20px;
   top: 50%;
   transform: translateY(-50%);
 }
 
 body {
-  background-color: var(--color-body);
+  background-color: var(--bg-body);
   font-family: arial;
   font-style: normal;
   text-align: center;
@@ -50,11 +54,11 @@ body {
 }
 
 .container {
-  background-color: var(--color-conteudo);
+  background-color: var(--bg-container);
   border-radius: 10px;
-  border: 0.5px solid rgba(255, 255, 255, 0.582);
+  border: var(--color-border-container);
   padding: 25px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--color-shadow-container);
 }
 
 .bot-dificuldade {
@@ -66,20 +70,20 @@ body {
 }
 
 .bot-jogar button {
-  background-color: var(--color-bot-jogar);
+  background-color: var(--bg-bot-jogar);
   color: white;
 }
 
 button {
   padding: 10px 20px;
   border-radius: 30px;
-  border: 0.5px solid black;
+  border: var(--color-border-button);
   font-size: 20px;
-  box-shadow: 3px 3px #141414;
+  box-shadow: var(--color-shadow-button);
   margin-left: 6px;
 
   &:hover {
-    background-color: var(--color-bot-after);
+    background-color: var(--bg-bot-after);
     color: white;
   }
 }
