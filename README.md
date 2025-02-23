@@ -19,6 +19,7 @@ Está sendo desenvolvida uma API de um jogo da forca para navegador. </p>
 ## Como executar:
 
 - Para executar o programa é necessário que o node.js esteja instalado.
+
 ```
 node -v
 ```
@@ -30,12 +31,6 @@ node -v
 
 ```
 npm install
-```
-
-- Para inciar o banco de dados com as palavras bases:
-
-```
-node src/db/inicialWords.js
 ```
 
 - Executar a API:

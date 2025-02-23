@@ -1,9 +1,15 @@
 :root {
-  --color-bot-after: #5a5353c4;
-  --color-bot-jogar: #474343;
-  --color-body: #8a8c91;
-  --color-conteudo: #e6eaf167;
+  --bg-bot-after: #5a5353c4;
+  --bg-bot-jogar: #d1661e;
+  --bg-bot-ajuda: #03040c;
+  --bg-body: #cf8a5c;
+  --bg-container: #e6eaf167;
+  --color-border-container: 0.5px solid rgba(255, 255, 255, 0.582);
+  --color-shadow-container: 0 8px 32px rgba(0, 0, 0, 0.2);
+  --color-border-button: 0.5px solid black;
+  --color-shadow-button: 3px 3px #141414;
 }
+
 
 * {
   padding: 0;
@@ -11,77 +17,27 @@
   box-sizing: border-box;
 }
 
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  
-  position: fixed;  
-  top: 20px;           
-  right: 5px;          
-  width: 100%;      
-  padding: 10px 20px;
-  z-index: 1000;    
-}
-
-.forca {
-  font-weight: bold;
-  text-align: center;
-  font: bold;
-}
-
-.info {
-  position: absolute;
-  right: 20px; 
-  top: 50%;
-  transform: translateY(-50%);
-}
+/*Página 1*/
 
 body {
-  background-color: var(--color-body);
+  background-color: var(--bg-body);
   font-family: arial;
   font-style: normal;
   text-align: center;
-  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  height: calc(100% - 30px);
+  min-height: 100vh;
 }
 
 .container {
-  background-color: var(--color-conteudo);
+  background-color: var(--bg-container);
   border-radius: 10px;
-  border: 0.5px solid rgba(255, 255, 255, 0.582);
+  border: var(--color-border-container);
   padding: 25px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-}
-
-.bot-dificuldade {
-  margin-top: 30px;
-}
-
-.bot-jogar {
-  margin-top: 30px;
-}
-
-.bot-jogar button {
-  background-color: var(--color-bot-jogar);
-  color: white;
-}
-
-button {
-  padding: 10px 20px;
-  border-radius: 30px;
-  border: 0.5px solid black;
-  font-size: 20px;
-  box-shadow: 3px 3px #141414;
-  margin-left: 6px;
-
-  &:hover {
-    background-color: var(--color-bot-after);
-    color: white;
-  }
+  box-shadow: var(--color-shadow-container);
 }
 
 h1 {
@@ -98,9 +54,506 @@ p {
   margin: 5px;
 }
 
+.bot-dificuldade {
+  margin-top: 30px;
+}
+
+.bot-jogar {
+  margin-top: 30px;
+}
+
+.bot-jogar button {
+  background-color: var(--bg-bot-jogar);
+}
+
+.bot-jogar a {
+  text-decoration: none;
+  color: white;
+}
+
+
+button {
+  padding: 10px 20px;
+  border-radius: 30px;
+  border: var(--color-border-button);
+  font-size: 20px;
+  box-shadow: var(--color-shadow-button);
+  margin-left: 6px;
+
+  &:hover {
+    background-color: var(--bg-bot-after);
+    color: white;
+  }
+}
+
 footer {
   position: absolute;
   bottom: 0;
   width: 100%;
   height: 5rem;
+}
+
+/*Página 2*/
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  padding: 10px 20px;
+  z-index: 1000;
+  background-color: var(--bg-bot-jogar);
+  font-weight: bold;
+  text-align: center;
+}
+
+main {
+  padding-top: 60px;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.containerjogo {
+  background-color: var(--bg-container) !important;
+  filter: brightness(1.1);
+  border-radius: 20px;
+  border: 0.5px solid rgba(255, 255, 255, 0.582);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-height: 200px;
+  max-width: 500px;
+  margin-bottom: auto;
+  margin-top: 20px;
+}
+
+.game-area {
+  position: relative;
+  width: 400px;
+  height: 200px;
+  margin: auto;
+}
+
+.game-area img {
+  position: absolute;
+}
+
+.forca {
+  width: 100%;
+  height: 100%;
+  top: 12px;
+  left: 0;
+}
+
+.boneco {
+  display: none;
+  width: 60px;
+  height: auto;
+}
+
+#cabeca {
+  top: 65px;
+  left: 213px;
+}
+
+#corpo {
+  top: 95px;
+  left: 214px;
+}
+
+#bracoE {
+  top: 96px;
+  left: 204px;
+}
+
+#bracoD {
+  top: 95px;
+  left: 230px;
+}
+
+#pernaE {
+  top: 120px;
+  left: 208px;
+}
+
+#pernaD {
+  top: 120px;
+  left: 221px;
+}
+
+.corvo {
+  width: 80px;
+  height: 30%;
+  top: 0px;
+  left: 120px;
+}
+
+
+.keyboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin: auto;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+}
+
+.key {
+  width: 45px;
+  height: 45px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 45px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #e0e0e0;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.key:hover {
+  background-color: #d1d1d1;
+}
+
+.key:active {
+  background-color: #b0b0b0;
+}
+
+.letter {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  margin: 5px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 40px;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 5px;
+  top: 80px;
+}
+
+.palavra-escolhida {
+  margin: auto;
+  padding: 20px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Botão de ajuda */
+.info {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: none;
+  z-index: 999;
+}
+
+dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: var(--color-shadow-container);
+}
+
+
+.popup-container {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  box-shadow: var(--color-shadow-container);
+  z-index: 1000;
+}
+
+.popup-container.active {
+  display: block;
+  /* Mostra o popup quando a classe 'active' é adicionada */
+}
+
+
+.popup-box {
+  width: 350px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: var(--color-shadow-container);
+  padding: 20px;
+  text-align: center;
+  transform: scale(0.8);
+  transition: transform 0.3s ease;
+}
+
+
+.popup-container.active .popup-box {
+  transform: scale(1);
+}
+
+
+.popup-page {
+  display: none;
+}
+
+.popup-page h1 {
+  margin-bottom: 20px;
+}
+
+.popup-page li {
+  text-align: left;
+  margin: 0 0 10px 10px;
+}
+
+
+.popup-img {
+  width: 80%;
+  max-width: 250px;
+  margin: 10px auto;
+  display: block;
+}
+
+
+.popup-box button {
+  width: 100px;
+  height: 40px;
+  background-color: var(--bg-bot-ajuda);
+  border: none;
+  border-radius: 10%;
+  font-size: 20px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  margin: 10px;
+}
+
+.popup-box button:hover {
+  background-color: var(--bg-bot-after);
+}
+
+
+.popup-box .close-btn {
+  width: 100%;
+  height: 40px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-top: 15px;
+}
+
+.popup-box .close-btn:hover {
+  background-color: #cc0000;
+}
+
+@media (max-width: 400px) {
+
+  .key {
+    width: 30px;
+  }
+
+  main {
+    width: auto;
+    margin-left: auto;
+  }
+
+  .header {
+    padding-right: 0;
+    width: 100vh;
+  }
+
+}
+
+@media (min-width: 401px) and (max-width: 700px) {
+  .key {
+    width: 35px;
+  }
+
+}
+
+@media (min-width: 701px) and (max-width: 1399px) {
+  .containerjogo {
+    background-color: var(--bg-container) !important;
+    filter: brightness(1.1);
+    border-radius: 20px;
+    border: 0.5px solid rgba(255, 255, 255, 0.582);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-height: 200px;
+    max-width: 500px;
+    margin-bottom: auto;
+    margin-top: 20px;
+  }
+
+  .game-area {
+    position: relative;
+    width: 400px;
+    height: 200px;
+    margin: auto;
+  }
+
+  .game-area img {
+    position: absolute;
+  }
+
+  .forca {
+    width: 100%;
+    height: 100%;
+    top: 12px;
+    left: 0;
+  }
+
+  .boneco {
+    display: none;
+    width: 60px;
+    height: auto;
+  }
+
+  #cabeca {
+    top: 65px;
+    left: 213px;
+  }
+
+  #corpo {
+    top: 95px;
+    left: 214px;
+  }
+
+  #bracoE {
+    top: 96px;
+    left: 204px;
+  }
+
+  #bracoD {
+    top: 95px;
+    left: 230px;
+  }
+
+  #pernaE {
+    top: 120px;
+    left: 208px;
+  }
+
+  #pernaD {
+    top: 120px;
+    left: 221px;
+  }
+
+  .corvo {
+    width: 80px;
+    height: 30%;
+    top: 0px;
+    left: 120px;
+  }
+
+}
+
+@media (min-width: 1400px) {
+  .key {
+    width: 70px;
+    height: 70px;
+  }
+
+  .containerjogo {
+    background-color: var(--bg-container) !important;
+    filter: brightness(1.1);
+    border-radius: 20px;
+    border: 0.5px solid rgba(255, 255, 255, 0.582);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-height: 250px;
+    max-width: 700px;
+    margin-bottom: auto;
+    margin-top: 20px;
+  }
+
+  .game-area {
+    position: relative;
+    width: 400px;
+    height: 250px;
+    margin: auto;
+  }
+
+  .game-area img {
+    position: absolute;
+  }
+
+  .forca {
+    width: 100%;
+    height: 100%;
+    top: 12px;
+    left: 0;
+  }
+
+  .boneco {
+    display: none;
+    width: 60px;
+    height: auto;
+  }
+
+  #cabeca {
+    top: 85px;
+    left: 213px;
+  }
+
+  #corpo {
+    top: 115px;
+    left: 214px;
+  }
+
+  #bracoE {
+    top: 116px;
+    left: 204px;
+  }
+
+  #bracoD {
+    top: 115px;
+    left: 230px;
+  }
+
+  #pernaE {
+    top: 140px;
+    left: 208px;
+  }
+
+  #pernaD {
+    top: 140px;
+    left: 221px;
+  }
+
+  .corvo {
+    width: 80px;
+    top: -8px;
+    left: 120px;
+  }
+
+
 }
