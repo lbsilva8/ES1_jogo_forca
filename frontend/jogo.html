@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Enforcado</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="scripts.js"></script>
+  </head>
+  <body>
+    <header class="header">
+      <h1>Categoria</h1>
+      <button class="info">?</button>
+      <!-- Fundo escuro quando abre o popup-->
+      <div id="overlay" class="overlay"></div>
+      <dialog id="infoModal">
+        <div class="popup-box">
+          <!-- Página 1: Introdução -->
+          <div class="popup-page" id="pagina1">
+            <h1>O jogo</h1>
+            <ul>
+              <li>
+                O objetivo do Jogo da Forca é adivinhar uma palavra secreta
+                antes que o número máximo de tentativas seja atingido.
+              </li>
+              <li>O jogo é dividido por categoria: Fácil, Médio, Difícil.</li>
+              <li>
+                Cada categoria representa uma quantidade de letras que a palavra
+                terá, sendo fácil até 5 letras, médio até 10 letras e dificil
+                mais de 10 letras.
+              </li>
+            </ul>
+            <button onclick="mudarPagina(2)">→</button>
+          </div>
+
+          <!-- Página 2: Como Jogar -->
+          <div class="popup-page" id="pagina2">
+            <h1>Como jogar</h1>
+            <ul>
+              <li>
+                A palavra oculta está relacionada com a categoria que está
+                situada no topo da página.
+              </li>
+              <li>
+                O quantidade de letras da palavra oculta está representado pelos
+                traços.
+              </li>
+              <li>
+                Clique em uma das letras. Se a letra existir na palavra, a letra
+                será exibida.
+              </li>
+            </ul>
+            <img
+              src="imgButton/TecladoForca.jpeg"
+              alt="Imagem do teclado"
+              class="popup-img"
+            />
+
+            <button onclick="mudarPagina(1)">←</button>
+            <button onclick="mudarPagina(3)">→</button>
+          </div>
+
+          <!-- Página 3: Boneco Forca -->
+          <div class="popup-page" id="pagina3">
+            <h1>Tentativas de jogadas</h1>
+            <ul>
+              <li>O jogador tem 6 tentativas de jogadas.</li>
+
+              <li>
+                A cada erro, uma parte do boneco é desenhada: cabeça, tronco,
+                braço direito, braço esquerdo, perna direita e perna esquerda.
+              </li>
+            </ul>
+            <img
+              src="imgButton/BonecoForca.jpeg"
+              alt="Imagen Boneco"
+              class="popup-img"
+            />
+
+            <button onclick="mudarPagina(2)">←</button>
+            <button onclick="mudarPagina(4)">→</button>
+          </div>
+
+          <!-- Página 4: Dicas -->
+          <div class="popup-page" id="pagina4">
+            <h1>Dicas</h1>
+            <ul>
+              <li>Comece pelas vogais: a, e, i, o, u.</li>
+            </ul>
+            <button onclick="mudarPagina(3)">←</button>
+          </div>
+
+          <button id="closeModal" class="close-btn">Fechar</button>
+        </div>
+      </dialog>
+    </header>
+    <main>
+      <div class="containerjogo">
+        <div class="game-area">
+          <img src="img/nova-forca.png" alt="Forca" class="forca" />
+          <img src="img/corvo-hd.png" alt="Corvo" class="corvo" id="corvo" />
+          <img
+            src="img/cabeça-viva.png"
+            alt="Cabeça"
+            class="boneco"
+            id="cabeca"
+          />
+          <img src="img/torso.png" alt="Corpo" class="boneco" id="corpo" />
+          <img
+            src="img/esquerdo.png"
+            alt="Braço Esquerdo"
+            class="boneco"
+            id="bracoE"
+          />
+          <img
+            src="img/direito.png"
+            alt="Braço Direito"
+            class="boneco"
+            id="bracoD"
+          />
+          <img
+            src="img/perna-esquerda.png"
+            alt="Perna Esquerda"
+            class="boneco"
+            id="pernaE"
+          />
+          <img
+            src="img/perna-direita.png"
+            alt="Perna Direita"
+            class="boneco"
+            id="pernaD"
+          />
+        </div>
+      </div>
+      <div class="palavra-escolhida" id="palavraEscolhida"></div>
+      <div class="keyboard" id="keyboard">
+        <div class="row">
+          <div class="key">Q</div>
+          <div class="key">W</div>
+          <div class="key">E</div>
+          <div class="key">R</div>
+          <div class="key">T</div>
+          <div class="key">Y</div>
+          <div class="key">U</div>
+          <div class="key">I</div>
+          <div class="key">O</div>
+          <div class="key">P</div>
+        </div>
+        <div class="row">
+          <div class="key">A</div>
+          <div class="key">S</div>
+          <div class="key">D</div>
+          <div class="key">F</div>
+          <div class="key">G</div>
+          <div class="key">H</div>
+          <div class="key">J</div>
+          <div class="key">K</div>
+          <div class="key">L</div>
+          <div class="key">Ç</div>
+        </div>
+        <div class="row">
+          <div class="key">Z</div>
+          <div class="key">X</div>
+          <div class="key">C</div>
+          <div class="key">V</div>
+          <div class="key">B</div>
+          <div class="key">N</div>
+          <div class="key">M</div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
