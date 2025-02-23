@@ -28,8 +28,8 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  position: relative;
-  height: calc(100% - 30px)
+  height: calc(100% - 30px);
+  min-height: 100vh;
 }
 
 .container {
