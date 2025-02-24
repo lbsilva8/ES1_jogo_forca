@@ -25,7 +25,6 @@ document.addEventListener('DOMContentLoaded', function () {
       palavraEscolhida.appendChild(span);
     });
   }
-
   function verificarLetra(letra) {
     let acertou = false;
     document.querySelectorAll('.letter').forEach((span, index) => {
@@ -34,20 +33,26 @@ document.addEventListener('DOMContentLoaded', function () {
         acertou = true;
       }
     });
-
+  
     if (!acertou) {
       if (erros < maxErros) {
         document.getElementById(partesBoneco[erros]).style.display = 'block';
         erros++;
       }
-
+  
       if (erros === maxErros) {
         cabeca.src = 'img/morto.png';
         corvo.src = 'img/corvo-fome.png';
+        fimDeJogo(); // Chama o fim de jogo quando o jogador perde
       }
     }
+  
+    // Verificar se venceu
+    if ([...document.querySelectorAll('.letter')].every(span => span.textContent !== '_')) {
+      venceuJogo();
+    }
   }
-
+  
   keyboard.addEventListener('click', function (event) {
     if (event.target.classList.contains('key')) {
       verificarLetra(event.target.textContent);
@@ -93,4 +98,27 @@ document.addEventListener('DOMContentLoaded', function () {
     const overlay = document.getElementById('overlay');
     overlay.style.display = 'none';
   });
+});
+//Fim de jogo 
+function fimDeJogo() {
+  const modalGame = document.getElementById('gameOverModal');
+  const gameOverMessage = document.getElementById('gameOverMessage');
+
+  gameOverMessage.textContent = "Você perdeu! Tente novamente.";
+  modalGame.showModal(); // Abre o modal de Game Over
+}
+
+function venceuJogo() {
+  const modalWin = document.getElementById('youWonModal');
+  modalWin.showModal(); // Abre o modal de Vitória
+}
+
+// Fechar modal de game over
+document.getElementById('closeGameOverModal').addEventListener('click', function () {
+  document.getElementById('gameOverModal').close();
+});
+
+// Fechar modal de vitória
+document.getElementById('closeYouWonModal').addEventListener('click', function () {
+  document.getElementById('youWonModal').close();
 });
