@@ -555,5 +555,77 @@ dialog {
     left: 120px;
   }
 
+}
+/* ------------------------ */
+/*      Modal Game Over     */
+/* ------------------------ */
+.modal-gameover {
+  border: 3px solid #d9534f;
+}
 
+.gameover-content {
+  background: #ffebee;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.gameover-title {
+  font-size: 24px;
+  color: #d9534f;
+}
+
+.gameover-text {
+  font-size: 18px;
+  color: #a94442;
+}
+
+.gameover-btn {
+  background: #d9534f;
+  color: #cf8a5c;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.gameover-btn:hover {
+  background: #c9302c;
+}
+
+/* ------------------------ */
+/*      Modal Vitória       */
+/* ------------------------ */
+.modal-youwon {
+  border: 3px solid #5cb85c;
+}
+
+.youwon-content {
+  background: #e8f5e9;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.youwon-title {
+  font-size: 24px;
+  color: #5cb85c;
+}
+
+.youwon-text {
+  font-size: 18px;
+  color: #3c763d;
+}
+
+.youwon-btn {
+  background: #5cb85c;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.modal-youwon .youwon-btn:hover {
+  background: #4cae4c !important;
 }
