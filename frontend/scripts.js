@@ -111,9 +111,6 @@ function reiniciarJogo() {
 
 function fimDeJogo() {
   const modalGame = document.getElementById('gameOverModal');
-  const gameOverMessage = document.getElementById('gameOverMessage');
-
-  gameOverMessage.textContent = 'Você perdeu! Tente novamente.';
   modalGame.showModal(); // Abre o modal de Game Over
 }
 
