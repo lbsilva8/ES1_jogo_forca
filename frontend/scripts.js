@@ -1,6 +1,35 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', async function () {
+  console.log('Página carregada e evento DOMContentLoaded executado');
+
+  const API_BASE_URL = 'http://localhost:3000';
+
+  async function getPalavraAleatoria() {
+    try {
+      const response = await fetch(`${API_BASE_URL}/words/word`);
+      if (!response.ok) {
+      }
+      const data = await response.json();
+      return data.palavra; // Retorna a palavra aleatória
+    } catch (error) {
+      console.error('Erro ao buscar palavra aleatória:', error);
+      throw error;
+    }
+  }
+
+  let palavra;
+  try {
+    palavra = await getPalavraAleatoria(); // Aguardando a resposta da API
+  } catch (error) {
+    // Caso o erro seja lançado, o jogo não começa e exibimos uma mensagem de erro.
+    document.getElementById('palavraEscolhida').textContent =
+      'Erro ao carregar palavra.';
+    return;
+  }
+  let palavraArray = palavra.split('');
   /*Página 2*/
-  let palavra = ['T', 'E', 'S', 'T', 'E'];
+
+  console.log('Palavra', palavraArray);
+
   let erros = 0;
   const maxErros = 6;
   const partesBoneco = [
@@ -18,17 +47,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function generateWordSpaces() {
     palavraEscolhida.innerHTML = '';
-    palavra.forEach(() => {
+    palavraArray.forEach(() => {
       const span = document.createElement('span');
       span.className = 'letter';
       span.textContent = '_';
       palavraEscolhida.appendChild(span);
     });
   }
+
   function verificarLetra(letra) {
     let acertou = false;
     document.querySelectorAll('.letter').forEach((span, index) => {
-      if (palavra[index] === letra) {
+      if (palavraArray[index].toLowerCase() === letra.toLowerCase()) {
         span.textContent = letra;
         acertou = true;
       }
@@ -111,6 +141,9 @@ function reiniciarJogo() {
 
 function fimDeJogo() {
   const modalGame = document.getElementById('gameOverModal');
+  const gameOverMessage = document.getElementById('gameOverMessage');
+
+  gameOverMessage.textContent = 'Você perdeu! Tente novamente.';
   modalGame.showModal(); // Abre o modal de Game Over
 }
 

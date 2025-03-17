@@ -1,5 +1,5 @@
 import express from 'express';
-import { getAllWords } from '../controllers/wordController.js';
+import { getAllWords, getRandomWord } from '../controllers/wordController.js';
 
 const router = express.Router();
 
@@ -22,5 +22,25 @@ const router = express.Router();
  *                 type: string
  */
 router.get('/', getAllWords);
+
+/**
+ * @swagger
+ * /words/word:
+ *   get:
+ *     summary: Buscar uma palsvra aleatória
+ *     description: Este endpoint retorna uma palavra aleatória do banco de dados.
+ *     tags:
+ *       - BD
+ *     responses:
+ *       200:
+ *         description: listar palavra aleatória
+ *         content:
+ *            application/json:
+ *              schema:
+ *               type: array
+ *               items:
+ *                 type: string
+ */
+router.get('/word', getRandomWord);
 
 export default router;

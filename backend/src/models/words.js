@@ -94,6 +94,19 @@ class Word {
       });
     });
   }
+
+  getRandomWord() {
+    return new Promise((resolve, reject) => {
+      this.db.get(
+        'SELECT * FROM palavras ORDER BY RANDOM() LIMIT 1',
+        [],
+        (err, row) => {
+          if (err) reject(err);
+          else resolve(row);
+        },
+      );
+    });
+  }
 }
 
 export default new Word();
