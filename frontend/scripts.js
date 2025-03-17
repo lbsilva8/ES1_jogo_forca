@@ -135,6 +135,10 @@ document.addEventListener('DOMContentLoaded', async function () {
 });
 
 //Fim de jogo
+function reiniciarJogo() {
+  location.reload();
+}
+
 function fimDeJogo() {
   const modalGame = document.getElementById('gameOverModal');
   const gameOverMessage = document.getElementById('gameOverMessage');
@@ -153,6 +157,7 @@ document
   .getElementById('closeGameOverModal')
   .addEventListener('click', function () {
     document.getElementById('gameOverModal').close();
+    reiniciarJogo();
   });
 
 // Fechar modal de vitória
@@ -160,4 +165,5 @@ document
   .getElementById('closeYouWonModal')
   .addEventListener('click', function () {
     document.getElementById('youWonModal').close();
+    reiniciarJogo();
   });
