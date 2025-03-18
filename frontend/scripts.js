@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       if (!response.ok) {
       }
       const data = await response.json();
-      return data.palavra; // Retorna a palavra aleatória
+      return data; // Retorna a palavra aleatória
     } catch (error) {
       console.error('Erro ao buscar palavra aleatória:', error);
       throw error;
@@ -17,8 +17,12 @@ document.addEventListener('DOMContentLoaded', async function () {
   }
 
   let palavra;
+  let categoria;
+  let arrayPalavra;
+
   try {
-    palavra = await getPalavraAleatoria(); // Aguardando a resposta da API
+    arrayPalavra = await getPalavraAleatoria(); // Aguardando a resposta da API
+    palavra = arrayPalavra.palavra;
   } catch (error) {
     // Caso o erro seja lançado, o jogo não começa e exibimos uma mensagem de erro.
     document.getElementById('palavraEscolhida').textContent =
@@ -26,10 +30,13 @@ document.addEventListener('DOMContentLoaded', async function () {
     return;
   }
   let palavraArray = palavra.split('');
+
+  function carregarCategoria() {
+    categoria = arrayPalavra.categoria;
+    document.getElementById('categoria').textContent = categoria.toUpperCase();
+  }
+
   /*Página 2*/
-
-  console.log('Palavra', palavraArray);
-
   let erros = 0;
   const maxErros = 6;
   const partesBoneco = [
@@ -94,6 +101,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   });
 
   generateWordSpaces();
+  carregarCategoria();
 
   /* página de ajuda*/
   let paginaAtual = 1;
