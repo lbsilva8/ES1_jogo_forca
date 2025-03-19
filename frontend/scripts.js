@@ -62,14 +62,37 @@ document.addEventListener('DOMContentLoaded', async function () {
     });
   }
 
+  function removerAcentos(texto) {
+    return texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  }
+  
   function verificarLetra(letra) {
-    let acertou = false;
-    document.querySelectorAll('.letter').forEach((span, index) => {
-      if (palavraArray[index].toLowerCase() === letra.toLowerCase()) {
-        span.textContent = letra;
-        acertou = true;
+      let acertou = false;
+      let letraNormalizada = removerAcentos(letra.toLowerCase());
+      
+  
+      document.querySelectorAll('.letter').forEach((span, index) => {
+        let letraPalavra = removerAcentos(palavraArray[index].toLowerCase());
+  
+        if (letraPalavra === letraNormalizada) {
+          span.textContent = palavraArray[index]; // Mantém o acento original na exibição
+          span.textContent = palavraArray[index].toUpperCase();
+          acertou = true;
+        }
+      });
+  
+      if (!acertou) {
+        if (erros < maxErros) {
+          document.getElementById(partesBoneco[erros]).style.display = 'block';
+          erros++;
+        }
+  
+        if (erros === maxErros) {
+          cabeca.src = 'img/morto.png';
+          corvo.src = 'img/corvo-fome.png';
+          fimDeJogo();
+        }
       }
-    });
 
     if (!acertou) {
       if (erros < maxErros) {
