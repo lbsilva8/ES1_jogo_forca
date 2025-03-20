@@ -629,3 +629,7 @@ dialog {
 .modal-youwon .youwon-btn:hover {
   background: #4cae4c !important;
 }
+.vlibras {
+  z-index: 9999 !important; /* Garante que fique acima dos outros elementos */
+  position: fixed !important;
+}

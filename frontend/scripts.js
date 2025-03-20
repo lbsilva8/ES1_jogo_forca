@@ -175,3 +175,4 @@ document
     document.getElementById('youWonModal').close();
     reiniciarJogo();
   });
+  
