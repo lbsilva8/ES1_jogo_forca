@@ -23,9 +23,23 @@
       <h1>Enforcado</h1>
       <h3>Selecione a dificuldade que você quer jogar!</h3>
       <div class="bot-dificuldade">
-        <button>Fácil</button>
-        <button>Médio</button>
-        <button>Difícil</button>
+        <button id="facil">Fácil</button>
+        <button id="medio">Médio</button>
+        <button id="dificil">Difícil</button>
+        <script>
+          document.getElementById("facil").addEventListener("click", function() {
+            localStorage.setItem("dificuldade", "facil");
+          });
+        
+          document.getElementById("medio").addEventListener("click", function() {
+            localStorage.setItem("dificuldade", "medio");
+          });
+        
+          document.getElementById("dificil").addEventListener("click", function() {
+            localStorage.setItem("dificuldade", "dificil");
+          });
+        </script>
+        
       </div>
       <div class="bot-jogar">
         <button><a href="jogo.html">Jogar</a></button>
