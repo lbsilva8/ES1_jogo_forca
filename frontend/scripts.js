@@ -5,16 +5,21 @@ document.addEventListener('DOMContentLoaded', async function () {
 
   async function getPalavraAleatoria() {
     try {
-      const response = await fetch(`${API_BASE_URL}/words/word`);
+      const dificuldade = localStorage.getItem("dificuldade") || "medio"; // Padrão é "médio"
+      const response = await fetch(`${API_BASE_URL}/words/word?dificuldade=${dificuldade}`);
+      
       if (!response.ok) {
+        throw new Error("Erro na resposta da API");
       }
+  
       const data = await response.json();
-      return data; // Retorna a palavra aleatória
+      return data;
     } catch (error) {
-      console.error('Erro ao buscar palavra aleatória:', error);
+      console.error("Erro ao buscar palavra aleatória:", error);
       throw error;
     }
   }
+  
 
   let palavra;
   let categoria;
@@ -80,6 +85,15 @@ document.addEventListener('DOMContentLoaded', async function () {
           acertou = true;
         }
       });
+
+      let tecla = [...document.querySelectorAll('.key')].find(
+        (key) => key.textContent.toLowerCase() === letra.toLowerCase()
+    );
+
+    if (tecla) {
+        tecla.disabled = true;  // Desativa o botão
+        tecla.classList.add('disabled-key');  // Adiciona classe para escurecer
+    }
   
       if (!acertou) {
         if (erros < maxErros) {
@@ -94,18 +108,6 @@ document.addEventListener('DOMContentLoaded', async function () {
         }
       }
 
-    if (!acertou) {
-      if (erros < maxErros) {
-        document.getElementById(partesBoneco[erros]).style.display = 'block';
-        erros++;
-      }
-
-      if (erros === maxErros) {
-        cabeca.src = 'img/morto.png';
-        corvo.src = 'img/corvo-fome.png';
-        fimDeJogo(); // Chama o fim de jogo quando o jogador perde
-      }
-    }
 
     // Verificar se venceu
     if (

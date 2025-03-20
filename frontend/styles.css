@@ -633,3 +633,8 @@ dialog {
   z-index: 9999 !important; /* Garante que fique acima dos outros elementos */
   position: fixed !important;
 }
+.disabled-key {
+  background-color: #d1661e; 
+  color: #ccc; 
+  pointer-events: none; 
+}
