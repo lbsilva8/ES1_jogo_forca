@@ -21,8 +21,8 @@ jobs:
 
     - name: Authenticate gcloud
       run: |
-        echo ${{ secrets.GCP_CREDENTIALS }} > $HOME/gcloud-service-key.json
-        gcloud auth activate-service-account --key-file=$HOME/gcloud-service-key.json
+        echo "${{ secrets.GCP_SA_KEY }}" > $HOME/gcloud-service-key.json   # Salva o conteúdo do segredo como um arquivo JSON
+        gcloud auth activate-service-account --key-file=$HOME/gcloud-service-key.json  # Ativa a Service Account
         gcloud config set project backend-454404  # Define explicitamente o projeto
 
     - name: Verify gcloud authentication
