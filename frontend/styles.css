@@ -71,6 +71,11 @@ p {
   color: white;
 }
 
+a {
+  text-decoration: none;
+  color: white;
+}
+
 
 button {
   padding: 10px 20px;
