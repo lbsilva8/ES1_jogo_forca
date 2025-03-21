@@ -19,4 +19,4 @@ jobs:
           service_account_key: ${{ secrets.GCP_CREDENTIALS }}
 
       - name: Deploy to App Engine
-        run: gcloud app deploy app.yaml --project 113240698306220952428
+        run: gcloud app deploy app.yaml --project back
