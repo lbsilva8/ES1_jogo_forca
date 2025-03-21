@@ -281,6 +281,12 @@ main {
   flex-wrap: wrap;
 }
 
+.space {
+  visibility: visible;
+  pointer-events: none; /* Para evitar qualquer interação */
+}
+
+
 /* Botão de ajuda */
 .info {
   position: absolute;
