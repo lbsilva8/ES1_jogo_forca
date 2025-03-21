@@ -17,7 +17,18 @@ jobs:
       uses: google-github-actions/setup-gcloud@v0.6.0
       with:
         project_id: "backend-454404"
-        credentials: ${{ secrets.GCP_CREDENTIALS }}
+        credentials: ${{ secrets.GCP_CREDENTIALS }}  # Chave da Service Account como segredo
+
+    - name: Authenticate gcloud
+      run: |
+        echo ${{ secrets.GCP_CREDENTIALS }} > $HOME/gcloud-service-key.json
+        gcloud auth activate-service-account --key-file=$HOME/gcloud-service-key.json
+        gcloud config set project backend-454404  # Define explicitamente o projeto
+
+    - name: Verify gcloud authentication
+      run: |
+        gcloud auth list
+        gcloud config list
 
     - name: Deploy to App Engine
-      run: gcloud app deploy app.yaml --project "backend-454404" 
+      run: gcloud app deploy app.yaml --project "backend-454404"
