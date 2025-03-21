@@ -93,6 +93,17 @@ footer {
   height: 5rem;
 }
 
+button.selected {
+  background-color: #4CAF50;
+  /* Cor de fundo verde */
+  color: white;
+  /* Cor do texto em branco */
+  border: 2px solid #388E3C;
+  /* Borda verde escura */
+  box-shadow: 0 0 10px rgba(0, 128, 0, 0.6);
+  /* Sombra verde */
+}
+
 /*Página 2*/
 .header {
   display: flex;
@@ -107,6 +118,7 @@ footer {
   font-weight: bold;
   text-align: center;
 }
+
 #pontuacaoContainer {
   position: absolute;
   top: 70px;
@@ -568,6 +580,7 @@ dialog {
   }
 
 }
+
 /* ------------------------ */
 /*      Modal Game Over     */
 /* ------------------------ */
@@ -641,12 +654,15 @@ dialog {
 .modal-youwon .youwon-btn:hover {
   background: #4cae4c !important;
 }
+
 .vlibras {
-  z-index: 9999 !important; /* Garante que fique acima dos outros elementos */
+  z-index: 9999 !important;
+  /* Garante que fique acima dos outros elementos */
   position: fixed !important;
 }
+
 .disabled-key {
-  background-color: #d1661e; 
-  color: #ccc; 
-  pointer-events: none; 
+  background-color: #d1661e;
+  color: #ccc;
+  pointer-events: none;
 }

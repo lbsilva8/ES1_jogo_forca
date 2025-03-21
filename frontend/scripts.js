@@ -3,40 +3,44 @@ document.addEventListener('DOMContentLoaded', async function () {
 
   const API_BASE_URL = 'http://localhost:3000';
 
-  async function getPalavraAleatoria() {
-    try {
-      const dificuldade = localStorage.getItem("dificuldade") || "medio";
-      const response = await fetch(`${API_BASE_URL}/words/word?dificuldade=${dificuldade}&t=${Date.now()}`);
-      
-      if (!response.ok) {
-        throw new Error("Erro na resposta da API");
-      }
-  
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.error("Erro ao buscar palavra aleatória:", error);
-      throw error;
-    }
-  }
-  
   let palavra = '';
+  let dificuldade = '';
   let categoria = '';
   let arrayPalavra = [];
   let erros = 0;
   const maxErros = 6;
-  let pontuacao = parseInt(localStorage.getItem("pontuacao")) || 0; // Nova: pontuação
+  let pontuacao = parseInt(localStorage.getItem('pontuacao')) || 0; // Nova: pontuação
   let letrasUsadas = new Set(); // Nova: rastrear letras usadas
-  const pontuacaoElemento = document.getElementById("pontuacao"); // Nova: elemento de pontuação
+  const pontuacaoElemento = document.getElementById('pontuacao'); // Nova: elemento de pontuação
 
   if (pontuacaoElemento) {
     pontuacaoElemento.textContent = pontuacao; // Nova: exibir pontuação inicial
   }
 
-  // Função para inicializar o jogo com uma nova palavra
-  async function iniciarJogo() {
+  dificuldade = localStorage.getItem('dificuldade'); // Carregar a dificuldade ou usar 'facil' como padrão
+
+  async function getPalavraAleatoria(dificuldade = '') {
     try {
-      const data = await getPalavraAleatoria();
+      const url = dificuldade
+        ? `${API_BASE_URL}/words/wordByDifficulty?dificuldade=${dificuldade}`
+        : `${API_BASE_URL}/words/word`;
+      const response = await fetch(url);
+
+      if (!response.ok) {
+        throw new Error('Erro ao buscar palavra');
+      }
+      const data = await response.json();
+      return data; // Retorna a palavra aleatória
+    } catch (error) {
+      console.error('Erro ao buscar palavra aleatória:', error);
+      throw error;
+    }
+  }
+
+  // Função para inicializar o jogo com uma nova palavra
+  async function iniciarJogo(dificuldade = '') {
+    try {
+      const data = await getPalavraAleatoria(dificuldade);
       palavra = data.palavra.toUpperCase();
       categoria = data.categoria;
       arrayPalavra = palavra.split('');
@@ -47,7 +51,8 @@ document.addEventListener('DOMContentLoaded', async function () {
       resetarBoneco();
       resetarTeclado();
     } catch (error) {
-      document.getElementById('palavraEscolhida').textContent = 'Erro ao carregar palavra.';
+      document.getElementById('palavraEscolhida').textContent =
+        'Erro ao carregar palavra.';
       palavra = 'EXEMPLO';
       categoria = 'Geral';
       arrayPalavra = palavra.split('');
@@ -65,7 +70,14 @@ document.addEventListener('DOMContentLoaded', async function () {
   }
 
   /* Página 2 */
-  const partesBoneco = ['cabeca', 'corpo', 'bracoE', 'bracoD', 'pernaE', 'pernaD'];
+  const partesBoneco = [
+    'cabeca',
+    'corpo',
+    'bracoE',
+    'bracoD',
+    'pernaE',
+    'pernaD',
+  ];
   const palavraEscolhida = document.getElementById('palavraEscolhida');
   const keyboard = document.getElementById('keyboard');
   const cabeca = document.getElementById('cabeca');
@@ -97,17 +109,17 @@ document.addEventListener('DOMContentLoaded', async function () {
   }
 
   function removerAcentos(texto) {
-    return texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    return texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   }
-  
+
   function verificarLetra(letra) {
     let letraNormalizada = removerAcentos(letra.toLowerCase());
-    
+
     if (letrasUsadas.has(letraNormalizada)) return; // Nova: verificar letras usadas
 
     letrasUsadas.add(letraNormalizada); // Nova: adicionar letra usada
     let acertou = false;
-    
+
     document.querySelectorAll('.letter').forEach((span, index) => {
       let letraPalavra = removerAcentos(arrayPalavra[index].toLowerCase());
       if (letraPalavra === letraNormalizada) {
@@ -117,20 +129,20 @@ document.addEventListener('DOMContentLoaded', async function () {
     });
 
     let tecla = [...document.querySelectorAll('.key')].find(
-      (key) => key.textContent.toLowerCase() === letra.toLowerCase()
+      (key) => key.textContent.toLowerCase() === letra.toLowerCase(),
     );
 
     if (tecla) {
       tecla.disabled = true;
       tecla.classList.add('disabled-key');
     }
-  
+
     if (!acertou) {
       if (erros < maxErros) {
         document.getElementById(partesBoneco[erros]).style.display = 'block';
         erros++;
       }
-  
+
       if (erros === maxErros) {
         cabeca.src = 'img/morto.png';
         corvo.src = 'img/corvo-fome.png';
@@ -148,7 +160,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   }
 
   // Nova: captura de entrada por teclado físico
-  document.addEventListener("keydown", function (event) {
+  document.addEventListener('keydown', function (event) {
     let letra = event.key.toUpperCase();
     if (/^[A-ZÇ]$/.test(letra) && !letrasUsadas.has(letra.toLowerCase())) {
       verificarLetra(letra);
@@ -198,7 +210,8 @@ document.addEventListener('DOMContentLoaded', async function () {
 
   // Fim de jogo
   function reiniciarJogo() {
-    iniciarJogo(); // Busca uma nova palavra e reinicia o jogo
+    const dificuldade = localStorage.getItem('dificuldade') || 'facil'; // Lê novamente a dificuldade
+    iniciarJogo(dificuldade); // Busca uma nova palavra e reinicia o jogo
   }
 
   function fimDeJogo() {
@@ -222,7 +235,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     if (pontuacaoElemento) {
       pontuacaoElemento.textContent = pontuacao;
     }
-    localStorage.setItem("pontuacao", pontuacao);
+    localStorage.setItem('pontuacao', pontuacao);
   }
 
   document
@@ -240,5 +253,21 @@ document.addEventListener('DOMContentLoaded', async function () {
     });
 
   // Inicia o jogo pela primeira vez
-  await iniciarJogo();
+  await iniciarJogo(dificuldade);
+
+  document
+    .getElementById('resetarJogoBtn')
+    .addEventListener('click', function () {
+      // Zera todos os dados no localStorage
+      localStorage.clear(); // Remove todos os dados do localStorage
+
+      // Zera as variáveis relevantes
+      pontuacao = 0;
+      letrasUsadas.clear(); // Limpa as letras usadas
+
+      // Atualiza a pontuação na interface
+      if (pontuacaoElemento) {
+        pontuacaoElemento.textContent = pontuacao;
+      }
+    });
 });
