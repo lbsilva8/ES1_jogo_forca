@@ -10,13 +10,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+    - name: Check out the code
+      uses: actions/checkout@v2
 
-      - name: Set up Google Cloud SDK
-        uses: google-github-actions/setup-gcloud@v1
-        with:
-          service_account_key: ${{ secrets.GCP_CREDENTIALS }}
+    - name: Set up Google Cloud SDK
+      uses: google-github-actions/setup-gcloud@v0.6.0
+      with:
+        project_id: "backend-454404"
+        credentials: ${{ secrets.GCP_CREDENTIALS }}
 
-      - name: Deploy to App Engine
-        run: gcloud app deploy app.yaml --project "backend-454404"
+    - name: Deploy to App Engine
+      run: gcloud app deploy app.yaml --project "backend-454404"
