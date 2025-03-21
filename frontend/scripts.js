@@ -85,13 +85,19 @@ document.addEventListener('DOMContentLoaded', async function () {
 
   function generateWordSpaces() {
     palavraEscolhida.innerHTML = '';
-    arrayPalavra.forEach(() => {
+    arrayPalavra.forEach((letra) => {
       const span = document.createElement('span');
       span.className = 'letter';
-      span.textContent = '_';
+      if (letra === ' ') {
+        span.textContent = ' '; // Espaços aparecem como espaços visíveis
+        span.classList.add('space'); // Opcional: para estilização de espaços
+      } else {
+        span.textContent = '_'; // Letras permanecem ocultas
+      }
       palavraEscolhida.appendChild(span);
     });
   }
+  
 
   function resetarBoneco() {
     partesBoneco.forEach((parte) => {
@@ -114,50 +120,54 @@ document.addEventListener('DOMContentLoaded', async function () {
 
   function verificarLetra(letra) {
     let letraNormalizada = removerAcentos(letra.toLowerCase());
-
+  
     if (letrasUsadas.has(letraNormalizada)) return; // Nova: verificar letras usadas
-
+  
     letrasUsadas.add(letraNormalizada); // Nova: adicionar letra usada
     let acertou = false;
-
+  
     document.querySelectorAll('.letter').forEach((span, index) => {
+      if (arrayPalavra[index] === ' ') return; // Ignora espaços na palavra
       let letraPalavra = removerAcentos(arrayPalavra[index].toLowerCase());
       if (letraPalavra === letraNormalizada) {
         span.textContent = arrayPalavra[index]; // Mantém o acento original
         acertou = true;
       }
     });
-
+  
     let tecla = [...document.querySelectorAll('.key')].find(
       (key) => key.textContent.toLowerCase() === letra.toLowerCase(),
     );
-
+  
     if (tecla) {
       tecla.disabled = true;
       tecla.classList.add('disabled-key');
     }
-
+  
     if (!acertou) {
       if (erros < maxErros) {
         document.getElementById(partesBoneco[erros]).style.display = 'block';
         erros++;
       }
-
+  
       if (erros === maxErros) {
         cabeca.src = 'img/morto.png';
         corvo.src = 'img/corvo-fome.png';
         fimDeJogo();
       }
     }
-
+  
+    // Verificar se todas as letras (exceto espaços) foram acertadas
     if (
       [...document.querySelectorAll('.letter')].every(
-        (span) => span.textContent !== '_',
+        (span, index) =>
+          span.textContent !== '_' || arrayPalavra[index] === ' ',
       )
     ) {
       venceuJogo();
     }
   }
+  
 
   // Nova: captura de entrada por teclado físico
   document.addEventListener('keydown', function (event) {
