@@ -20,4 +20,4 @@ jobs:
         credentials: ${{ secrets.GCP_CREDENTIALS }}
 
     - name: Deploy to App Engine
-      run: gcloud app deploy app.yaml --project "backend-454404"
+      run: gcloud app deploy app.yaml --project "backend-454404" 
