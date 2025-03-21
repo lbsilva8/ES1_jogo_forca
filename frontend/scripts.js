@@ -89,14 +89,18 @@ document.addEventListener('DOMContentLoaded', async function () {
       const span = document.createElement('span');
       span.className = 'letter';
       if (letra === ' ') {
-        span.textContent = ' '; // Espaços aparecem como espaços visíveis
-        span.classList.add('space'); // Opcional: para estilização de espaços
+        span.textContent = ' '; // Espaços aparecem como visíveis
+        span.classList.add('space'); // Opcional: estilização para espaços
+      } else if (letra === '-') {
+        span.textContent = '-'; // Hífens aparecem diretamente
+        span.classList.add('hyphen'); // Opcional: estilização para hífens
       } else {
         span.textContent = '_'; // Letras permanecem ocultas
       }
       palavraEscolhida.appendChild(span);
     });
   }
+  
   
 
   function resetarBoneco() {
@@ -127,7 +131,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     let acertou = false;
   
     document.querySelectorAll('.letter').forEach((span, index) => {
-      if (arrayPalavra[index] === ' ') return; // Ignora espaços na palavra
+      if (arrayPalavra[index] === ' ' || arrayPalavra[index] === '-') return; // Ignora espaços e hífens
       let letraPalavra = removerAcentos(arrayPalavra[index].toLowerCase());
       if (letraPalavra === letraNormalizada) {
         span.textContent = arrayPalavra[index]; // Mantém o acento original
@@ -157,11 +161,11 @@ document.addEventListener('DOMContentLoaded', async function () {
       }
     }
   
-    // Verificar se todas as letras (exceto espaços) foram acertadas
+    // Verificar se todas as letras (exceto espaços e hífens) foram acertadas
     if (
       [...document.querySelectorAll('.letter')].every(
         (span, index) =>
-          span.textContent !== '_' || arrayPalavra[index] === ' ',
+          span.textContent !== '_' || arrayPalavra[index] === ' ' || arrayPalavra[index] === '-',
       )
     ) {
       venceuJogo();
