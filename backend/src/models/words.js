@@ -107,6 +107,18 @@ class Word {
       );
     });
   }
-}
 
+  getWordsByLength(minLength, maxLength) {
+    return new Promise((resolve, reject) => {
+      const query = `
+      SELECT * FROM palavras
+      WHERE LENGTH(palavra) BETWEEN ? AND ?
+    `;
+      this.db.all(query, [minLength, maxLength], (err, rows) => {
+        if (err) reject(err);
+        else resolve(rows);
+      });
+    });
+  }
+}
 export default new Word();

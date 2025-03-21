@@ -1,5 +1,9 @@
 import express from 'express';
-import { getAllWords, getRandomWord } from '../controllers/wordController.js';
+import {
+  getAllWords,
+  getRandomWord,
+  getWordByDifficulty,
+} from '../controllers/wordController.js';
 
 const router = express.Router();
 
@@ -42,5 +46,40 @@ router.get('/', getAllWords);
  *                 type: string
  */
 router.get('/word', getRandomWord);
+
+/**
+ * @swagger
+ * /words/wordByDifficulty:
+ *   get:
+ *     summary: Buscar uma palavra filtrada por dificuldade
+ *     description: Este endpoint retorna uma palavra filtrada com base na dificuldade (fácil, médio, difícil).
+ *     tags:
+ *       - BD
+ *     parameters:
+ *       - in: query
+ *         name: dificuldade
+ *         required: true
+ *         schema:
+ *           type: string
+ *           enum: [facil, medio, dificil]
+ *         description: A dificuldade da palavra a ser retornada.
+ *     responses:
+ *       200:
+ *         description: listar palavra filtrada por dificuldade
+ *         content:
+ *            application/json:
+ *              schema:
+ *               type: object
+ *               properties:
+ *                 palavra:
+ *                   type: string
+ *                 categoria:
+ *                   type: string
+ *       400:
+ *         description: Dificuldade inválida fornecida
+ *       404:
+ *         description: Nenhuma palavra encontrada para a dificuldade selecionada
+ */
+router.get('/wordByDifficulty', getWordByDifficulty);
 
 export default router;
